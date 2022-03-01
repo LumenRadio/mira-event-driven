@@ -1,0 +1,11 @@
+*.o
+TAGS
+
+obj_*
+*.elf
+*.hex
+
+# emacs backup files
+*~
+*#
+.#*
