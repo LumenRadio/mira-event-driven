@@ -32,14 +32,12 @@ static uint32_t samples[AGGREGATOR_MAX_N_SAMPLES];
 // ******************************************************************************
 PROCESS(aggregator_proc, "Main process for aggregator module");
 PROCESS(aggregator_measurement_proc, "Measurement process for aggregator module");
-uint32_t measurement_finalize(
-    void);
+uint32_t measurement_finalize(void);
 
 // ******************************************************************************
 // Function definitions
 // ******************************************************************************
-void aggregator_init(
-    void)
+void aggregator_init(void)
 {
     aggregator_event = process_alloc_event();
 
@@ -49,15 +47,13 @@ void aggregator_init(
     process_start(&aggregator_proc, NULL);
 }
 
-void aggregator_stop(
-    void)
+void aggregator_stop(void)
 {
     process_exit(&aggregator_proc);
     process_exit(&aggregator_measurement_proc);
 }
 
-int aggregator_measurement_start(
-    const aggregator_measurement_config_t *config)
+int aggregator_measurement_start(const aggregator_measurement_config_t* config)
 {
     if (config->n_samples > AGGREGATOR_MAX_N_SAMPLES) {
         return -1;
@@ -75,8 +71,7 @@ int aggregator_measurement_start(
     return 0;
 }
 
-void aggregator_measurement_add(
-    uint32_t sample)
+void aggregator_measurement_add(uint32_t sample)
 {
     samples[current_sample_index++] = sample;
 
@@ -122,8 +117,7 @@ PROCESS_THREAD(aggregator_measurement_proc, ev, data)
     PROCESS_END();
 }
 
-uint32_t measurement_finalize(
-    void)
+uint32_t measurement_finalize(void)
 {
     uint64_t sum = 0;
     for (int i = 0; i < measurement_config.n_samples; i++) {

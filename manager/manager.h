@@ -10,14 +10,18 @@ form without prior written permission from LumenRadio AB.
 #include <mira.h>
 
 /* Event framework */
-typedef enum {
+typedef enum
+{
     MANAGER_EVENT_MEASUREMENT_REQUEST,
 } manager_event_type_t;
 
-typedef struct {
+typedef struct
+{
     manager_event_type_t type;
-    union {
-        struct {
+    union
+    {
+        struct
+        {
             uint32_t number_of_samples;
             uint32_t sample_period_ms;
         };
@@ -28,20 +32,17 @@ extern process_event_t manager_event;
 
 /* Module API */
 
-typedef struct {
+typedef struct
+{
     uint32_t measurement_period_s;
 } manager_config_t;
 
-void manager_init(
-    manager_config_t *config);
+void manager_init(manager_config_t* config);
 
-void manager_stop(
-    void);
+void manager_stop(void);
 
-void manager_result_display(
-    uint32_t value);
+void manager_result_display(uint32_t value);
 
-void manager_progress_display(
-    void);
+void manager_progress_display(void);
 
 #endif

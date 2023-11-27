@@ -27,7 +27,7 @@ process_event_t manager_event;
 // ******************************************************************************
 // Module macros
 // ******************************************************************************
-#define DEFAULT_NUMBER_OF_SAMPLES   (5)
+#define DEFAULT_NUMBER_OF_SAMPLES (5)
 
 // ******************************************************************************
 // Module variables
@@ -42,8 +42,7 @@ PROCESS(manager_proc, "Main process for manager module");
 // ******************************************************************************
 // Function definitions
 // ******************************************************************************
-void manager_init(
-    manager_config_t *config)
+void manager_init(manager_config_t* config)
 {
     manager_event = process_alloc_event();
 
@@ -54,20 +53,17 @@ void manager_init(
     }
 }
 
-void manager_stop(
-    void)
+void manager_stop(void)
 {
     process_exit(&manager_proc);
 }
 
-void manager_result_display(
-    uint32_t value)
+void manager_result_display(uint32_t value)
 {
     printf("%s: measurement value: %lu\n", __func__, value);
 }
 
-void manager_progress_display(
-    void)
+void manager_progress_display(void)
 {
     printf(".");
     fflush(stdout);
@@ -82,7 +78,7 @@ PROCESS_THREAD(manager_proc, ev, data)
 
     PROCESS_BEGIN();
 
-    uint32_t measurement_period_s = *(uint32_t *) data;
+    uint32_t measurement_period_s = *(uint32_t*)data;
     etimer_set(&timer, CLOCK_SECOND * measurement_period_s);
 
     PRINT("%s: started, period %lu s\n", __func__, measurement_period_s);
