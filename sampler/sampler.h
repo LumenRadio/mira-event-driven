@@ -12,25 +12,25 @@ form without prior written permission from LumenRadio AB.
 
 extern process_event_t sampler_event;
 
-typedef enum {
+typedef enum
+{
     SAMPLER_EVENT_DONE,
     SAMPLER_EVENT_ERROR,
 } sampler_event_type_t;
 
-typedef struct {
+typedef struct
+{
     sampler_event_type_t type;
-    union {
+    union
+    {
         uint32_t sample_value;
     };
 } sampler_event_data_t;
 
-void sampler_init(
-    void);
+void sampler_init(void);
 
-void sampler_stop(
-    void);
+void sampler_stop(void);
 
-void sampler_measurement_start(
-    void);
+void sampler_measurement_start(void);
 
 #endif

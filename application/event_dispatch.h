@@ -85,8 +85,7 @@ form without prior written permission from LumenRadio AB.
 /**
  * Start receiving events, and reacting.
  */
-void event_dispatch_init(
-    void);
+void event_dispatch_init(void);
 
 /**
  * Post an event to the dispatcher. The event dispatcher can make this reaction
@@ -106,8 +105,6 @@ void event_dispatch_init(
  * @retval 0:  Success.
  * @retval < 0: the event could not be posted.
  */
-int event_dispatch_post(
-    process_event_t event,
-    void *data);
+int event_dispatch_post(process_event_t event, void* data);
 
 #endif

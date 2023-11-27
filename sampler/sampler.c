@@ -29,20 +29,17 @@ PROCESS(sampler_measurement_proc, "Sampler measurement process");
 // ******************************************************************************
 // Function definitions
 // ******************************************************************************
-void sampler_init(
-    void)
+void sampler_init(void)
 {
     sampler_event = process_alloc_event();
 }
 
-void sampler_stop(
-    void)
+void sampler_stop(void)
 {
     process_exit(&sampler_measurement_proc);
 }
 
-void sampler_measurement_start(
-    void)
+void sampler_measurement_start(void)
 {
     if (process_is_running(&sampler_measurement_proc)) {
         return;
@@ -67,10 +64,7 @@ PROCESS_THREAD(sampler_measurement_proc, ev, data)
 
     /* Static because the event may be asynchronous */
     static sampler_event_data_t event_data;
-    event_data = (sampler_event_data_t) {
-        .type = SAMPLER_EVENT_DONE,
-        .sample_value = sample
-    };
+    event_data = (sampler_event_data_t){ .type = SAMPLER_EVENT_DONE, .sample_value = sample };
 
     event_dispatch_post(sampler_event, &event_data);
 
